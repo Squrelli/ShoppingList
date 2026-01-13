@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShopingList2.Views.ProductView">
+    <Frame BackgroundColor="#2B2B2B" BorderColor="White" CornerRadius="6" Padding="10" Margin="5">
+        <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="10">
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox IsChecked="{Binding IsPurchased}" Color="#512BD4"  CheckedChanged="OnCheckboxChanged"/>
+                <Label Text="{Binding Name}" TextColor="White" VerticalOptions="Center" FontSize="16">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsPurchased}" Value="True">
+                            <Setter Property="TextColor" Value="Gray" />
+                            <Setter Property="TextDecorations" Value="Strikethrough" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="1" Spacing="5" VerticalOptions="Center">
+                <Button Text="-" Clicked="OnDecreaseClicked" WidthRequest="40" BackgroundColor="#444" />
+                <Entry Text="{Binding Amount}" Keyboard="Numeric" WidthRequest="50" TextColor="White" HorizontalTextAlignment="Center" />
+                <Button Text="+" Clicked="OnIncreaseClicked" WidthRequest="40" BackgroundColor="#444" />
+                <Label Text="{Binding Unit}" TextColor="Gray" VerticalOptions="Center" Margin="5,0,0,0"/>
+            </HorizontalStackLayout>
+            <Button Grid.Column="2" Text="🗑" BackgroundColor="DarkRed" Clicked="OnDeleteClicked" WidthRequest="45" />
+        </Grid>
+    </Frame>
+</ContentView>
